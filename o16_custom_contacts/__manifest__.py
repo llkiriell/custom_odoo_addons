@@ -7,11 +7,11 @@
     'description': """
         Permite buscar contactos por su tipo de identificación en la vista de lista.
     """,
-    'author': "Tu Nombre",
-    'website': "http://www.tu-sitio-web.com",  # Opcional
-    'category': 'Uncategorized',  # Cambia esto a una categoría más adecuada si lo deseas
+    'author': "kirill",
+    'website': "http://www.tu-sitio-web.com",
+    'category': 'Sales', 
     'version': '0.1',
-    'depends': ['base', 'contacts', 'l10n_latam_base'], #Dependencia importante.
+    'depends': ['base', 'contacts', 'l10n_latam_base'], 
     'data': [
         'views/res_partner_views.xml',
     ],
