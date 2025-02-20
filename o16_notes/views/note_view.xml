@@ -10,11 +10,28 @@
         </field>
     </record>
 
-    <menuitem id="menu_notes" name="Notas" sequence="10" action="action_note"/>
+    <record id="view_note_form" model="ir.ui.view">
+        <field name="name">note.form</field>
+        <field name="model">o16_notes.note</field>
+        <field name="arch" type="xml">
+            <form string="Nota">
+                <sheet>
+                    <group>
+                        <field name="title"/>
+                        <field name="content"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <menuitem id="menu_notes" name="Notas" sequence="10"/>
     
     <record id="action_note" model="ir.actions.act_window">
         <field name="name">Notas</field>
         <field name="res_model">o16_notes.note</field>
-        <field name="view_mode">tree</field>
+        <field name="view_mode">tree,form</field>
     </record>
+
+    <menuitem id="menu_note_root" name="Notas" parent="menu_notes" action="action_note"/>
 </odoo>
