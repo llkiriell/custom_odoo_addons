@@ -7,8 +7,7 @@
     'description': """
         Permite buscar contactos por su tipo de identificación en la vista de lista.
     """,
-    'author': "kirill",
-    'website': "http://www.tu-sitio-web.com",
+    'author': "kirie",
     'category': 'Sales', 
     'version': '0.1',
     'depends': ['base', 'contacts', 'l10n_latam_base'], 
