@@ -1,0 +1,20 @@
+<odoo>
+    <record id="view_note_tree" model="ir.ui.view">
+        <field name="name">note.tree</field>
+        <field name="model">o16_notes.note</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="title"/>
+                <field name="content"/>
+            </tree>
+        </field>
+    </record>
+
+    <menuitem id="menu_notes" name="Notas" sequence="10" action="action_note"/>
+    
+    <record id="action_note" model="ir.actions.act_window">
+        <field name="name">Notas</field>
+        <field name="res_model">o16_notes.note</field>
+        <field name="view_mode">tree</field>
+    </record>
+</odoo>
