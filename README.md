@@ -26,7 +26,7 @@ Aquí se representa una estructura de directorios y archivos para desarrollar lo
     ├── odoo16_default.zip
     └── ...
 ```
-
+Este repositorio solo corresponde al contenido de la carpeta `addons`.
 ## Descripción de las carpetas y archivos:
 
 - `addons`: Esta carpeta contiene los módulos personalizados creados para Odoo 16. Los módulos en esta carpeta permiten extender y personalizar la funcionalidad de Odoo según las necesidades específicas del proyecto.
