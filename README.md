@@ -13,7 +13,7 @@ Repositorio que contiene aplicaciones o módulos de prueba de Odoo 16.
 - https://www.youtube.com/watch?v=MMKQ4qQwa1Q
 
 # Estructura de archivos
-Aquí tienes la imagen ASCII que representa la estructura de archivos solicitada:
+Aquí se representa una estructura de directorios y archivos para desarrollar los ejemplos:
 ```
 <directorio>/
 ├── addons/
