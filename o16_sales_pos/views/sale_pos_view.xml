@@ -1,0 +1,14 @@
+<odoo>
+    <!-- Accion que ejecuta el item personalizado-->
+    <record id="action_pos_custom_view" model="ir.actions.act_window">
+        <field name="name">Ventas por POS</field>
+        <field name="res_model">pos.order</field>
+        <field name="view_mode">tree</field>
+    </record>
+    <!-- Item en el menu pedido-->
+    <menuitem id="menu_pos_custom_order"
+              name="Ventas por POS"
+              parent="point_of_sale.menu_point_of_sale"
+              action="action_pos_custom_view" />
+              
+</odoo>
