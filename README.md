@@ -26,7 +26,7 @@ Aquí se representa una estructura de directorios y archivos para desarrollar lo
     ├── odoo16_default.zip
     └── ...
 ```
-
+Este repositorio solo corresponde al contenido de la carpeta `addons`.
 ## Descripción de las carpetas y archivos:
 
 - `addons`: Esta carpeta contiene los módulos personalizados creados para Odoo 16. Los módulos en esta carpeta permiten extender y personalizar la funcionalidad de Odoo según las necesidades específicas del proyecto.
@@ -137,3 +137,49 @@ Seguir el instalador rápido de Odoo, completar :
 
 # Activar modulos por defecto.
 Se puede activar el módulo `Sales` o el módulo `Peru_Accounting(l10n_pe)`, pero este último se activa por defecto al activar el primero.
+
+# Tareas automatizadas en Visual Studio Code
+Donde `{$ruta_de_addons}` es la ruta en la que se encuentran todas las carpetas de los módulos personalizados.
+## Iniciar el servidor
+
+```
+{
+    "label": "Borrar cache de Odoo",
+    "type": "shell",
+    "command": "cmd",
+    "args": [
+        "/c",
+        "for /d /r \"{$ruta_de_addons}" %d in (__pycache__) do if exist \"%d\" rmdir /s /q \"%d\""
+    ],
+    "problemMatcher": [],
+    "detail": "Elimina todas las carpetas __pycache__ dentro de addons"
+}
+```
+## Limpiar caché de los módulos personalizados
+```
+{
+    "label": "Borrar cache de Odoo",
+    "type": "shell",
+    "command": "cmd",
+    "args": [
+        "/c",
+        "for /d /r \"{$ruta_de_addons}" %d in (__pycache__) do if exist \"%d\" rmdir /s /q \"%d\""
+    ],
+    "problemMatcher": [],
+    "detail": "Elimina todas las carpetas __pycache__ dentro de addons"
+}
+```
+## Detener el servidor
+```
+{
+    "label": "Detener Odoo",
+    "type": "shell",
+    "command": "cmd",
+    "args": [
+        "/c",
+        "taskkill /F /IM python.exe"
+    ],
+    "problemMatcher": [],
+    "detail": "Termina el proceso de Odoo (Python)"
+}
+```
