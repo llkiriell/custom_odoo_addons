@@ -1,28 +1,61 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <record id="view_sale_order_combined" model="ir.ui.view">
-        <field name="name">sale.order.combined.view</field>
-        <field name="model">sale.order</field>
-        <field name="arch" type="xml">
-            <tree>
-                <field name="name"/>
-                <field name="partner_id"/>
-                <field name="amount_total"/>
-                <field name="sale_type"/>
-                <field name="state"/>
-            </tree>
-        </field>
-    </record>
+    <data>
+        <!-- Definición de la vista de lista -->
+        <record id="view_virtual_sale_pos_order_tree" model="ir.ui.view">
+            <field name="name">virtual.sale.pos.order.tree</field>
+            <field name="model">virtual.sale.pos.order</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="company_id"/>
+                    <field name="partner_id"/>
+                    <field name="pricelist_id"/>
+                    <field name="user_id"/>
+                    <field name="fiscal_position_id"/>
+                    <field name="currency_rate"/>
+                    <field name="amount_tax"/>
+                    <field name="amount_total"/>
+                    <field name="date_order"/>
+                    <field name="create_date"/>
+                    <field name="write_date"/>
+                </tree>
+            </field>
+        </record>
 
-    <record id="action_sale_order_combined" model="ir.actions.act_window">
-        <field name="name">Todas las Ventas</field>
-        <field name="res_model">sale.order</field>
-        <field name="view_mode">tree</field>
-        <field name="view_id" ref="view_sale_order_combined"/>
-    </record>
+        <!-- Definición de la vista de formulario -->
+        <record id="view_virtual_sale_pos_order_form" model="ir.ui.view">
+            <field name="name">virtual.sale.pos.order.form</field>
+            <field name="model">virtual.sale.pos.order</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="company_id"/>
+                        <field name="partner_id"/>
+                        <field name="pricelist_id"/>
+                        <field name="user_id"/>
+                        <field name="fiscal_position_id"/>
+                        <field name="currency_rate"/>
+                        <field name="amount_tax"/>
+                        <field name="amount_total"/>
+                        <field name="date_order"/>
+                        <field name="create_date"/>
+                        <field name="write_date"/>
+                    </group>
+                </form>
+            </field>
+        </record>
 
-    <menuitem id="menu_sale_order_combined"
-              name="Todas las Ventas"
-              parent="sale.sale_order_menu"
-              action="action_sale_order_combined"/>
+        <!-- Acción para abrir la vista de lista -->
+        <record id="action_virtual_sale_pos_order" model="ir.actions.act_window">
+            <field name="name">Virtual Sale/Pos Orders</field>
+            <field name="res_model">virtual.sale.pos.order</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_virtual_sale_pos_order_tree"/>
+        </record>
+
+        <!-- Menú para acceder a la vista -->
+        <menuitem id="menu_sale_order_combined"
+                  name="Todas las Ventas"
+                  parent="sale.sale_order_menu"
+                  action="action_virtual_sale_pos_order"/>
+    </data>
 </odoo>

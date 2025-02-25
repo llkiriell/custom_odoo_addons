@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_virtual_sale_pos_order_user,virtual.sale.pos.order user,model_virtual_sale_pos_order,base.group_user,1,1,1,1
+access_virtual_sale_pos_order_manager,virtual.sale.pos.order manager,model_virtual_sale_pos_order,base.group_system,1,1,1,1
+access_virtual_sale_pos_order_all,virtual.sale.pos.order all,model_virtual_sale_pos_order,base.group_user,1,1,1,1

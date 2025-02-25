@@ -1,0 +1,13 @@
+<odoo>
+    <data>
+        <!-- Acción que abre el modal -->
+        <record id="action_open_modal" model="ir.actions.client">
+            <field name="name">Abrir Modal</field>
+            <field name="tag">open_modal_action</field>
+        </record>
+
+        <!-- Menú de Informes en el POS -->
+        <menuitem id="menu_pos_reports" name="Informes" parent="point_of_sale.menu_point_of_sale" sequence="10"/>
+        <menuitem id="menu_pos_sales_export" parent="menu_pos_reports" name="Exportar Ventas" action="action_open_modal"/>
+    </data>
+</odoo>
