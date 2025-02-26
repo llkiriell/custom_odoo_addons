@@ -1,0 +1,45 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <CabeceraDocumentosEmitidos>
+    <FProceso></FProceso>
+    <CiaSocio></CiaSocio>
+    <CodAlm></CodAlm>
+    <IdBach></IdBach>
+    <TDocto></TDocto>
+    <NroDocto></NroDocto>
+    <FDocumento></FDocumento>
+    <ClienteRUC></ClienteRUC>
+    <ClienteNombre></ClienteNombre>
+    <ClienteDireccion></ClienteDireccion>
+    <CC></CC>
+    <Suc></Suc>
+    <UN></UN>
+    <RespNro></RespNro>
+    <MonDocto></MonDocto>
+    <MontoAfecto></MontoAfecto>
+    <MontoNoAfecto></MontoNoAfecto>
+    <MontoIGV></MontoIGV>
+    <MontoImp></MontoImp>
+    <MontoTotal></MontoTotal>
+    <PorcRecargo></PorcRecargo>
+    <Estado></Estado>
+    <DetCbzaFlag></DetCbzaFlag>
+    <TPago></TPago>
+    <MonPago></MonPago>
+    <TCPago></TCPago>
+    <MontoPago></MontoPago>
+    <TarCredCod></TarCredCod>
+    <DoctoRef></DoctoRef>
+    <NroAuto></NroAuto>
+    <MonProp></MonProp>
+    <ProcFlag></ProcFlag>
+    <EstProc></EstProc>
+    <NroLiq></NroLiq>
+    <NroPersonas></NroPersonas>
+    <Cajero></Cajero>
+    <VentaTiendaFlag></VentaTiendaFlag>
+    <OtrosIngresosFlag></OtrosIngresosFlag>
+    <ReservacionFlag></ReservacionFlag>
+    <NumeroAdelanto></NumeroAdelanto>
+  </CabeceraDocumentosEmitidos>
+</DocumentElement>
