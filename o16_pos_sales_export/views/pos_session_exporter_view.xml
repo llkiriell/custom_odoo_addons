@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <record id="action_export_sales_xml" model="ir.actions.server">
-        <field name="name">Exportar Ventas a XML</field>
+        <field name="name">Exportar Ventas a JSON</field>
         <field name="model_id" ref="point_of_sale.model_pos_session"/>
         <field name="state">code</field>
         <field name="binding_model_id" ref="point_of_sale.model_pos_session"/>
         <field name="binding_type">action</field>
         <field name="code">
-            records.action_download_archive()
+            action = records.action_message()
         </field>
     </record>
 </odoo>

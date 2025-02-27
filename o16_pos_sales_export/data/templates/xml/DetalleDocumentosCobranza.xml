@@ -1,0 +1,24 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <DetalleDocumentosCobranza>
+    <FProceso></FProceso>
+    <CiaSocio></CiaSocio>
+    <AlmCod></AlmCod>
+    <IdBach></IdBach>
+    <TDocto></TDocto>
+    <NroDocto></NroDocto>
+    <Sec></Sec>
+    <TPago></TPago>
+    <MonPago></MonPago>
+    <TCPago></TCPago>
+    <MontoPago></MontoPago>
+    <TarCredCod></TarCredCod>
+    <DoctoRef></DoctoRef>
+    <NroAutor />
+    <Propina></Propina>
+    <ProcFlag></ProcFlag>
+    <FProc></FProc>
+    <EstProc></EstProc>
+    <NroAdel xml:space="preserve"></NroAdel>
+  </DetalleDocumentosCobranza>
+</DocumentElement>
