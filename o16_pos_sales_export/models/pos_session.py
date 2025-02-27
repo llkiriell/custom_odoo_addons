@@ -66,7 +66,7 @@ class PosSession(models.Model):
     # Metodo para generar un archivo XML
     def generate_xml(self, file_name, data_array):
         # Ruta absoluta de la plantilla
-        template_path = os.path.join(modules.get_module_path('o16_pos_sales_export_pre'), 'data', 'templates', 'xml', file_name)
+        template_path = os.path.join(modules.get_module_path('o16_pos_sales_export'), 'data', 'templates', 'xml', file_name)
 
         # Verificación de archivo
         if not os.path.exists(template_path):
