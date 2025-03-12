@@ -1,0 +1,30 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <DetalleDocumentosFacturacion>
+    <FProceso></FProceso>
+    <CiaSocio></CiaSocio>
+    <AlmCod></AlmCod>
+    <IdBach></IdBach>
+    <TDocto></TDocto>
+    <NroDocto></NroDocto>
+    <Sec></Sec>
+    <TDet></TDet>
+    <ItemCodigo></ItemCodigo>
+    <Cant></Cant>
+    <CVta></CVta>
+    <IGVExon></IGVExon>
+    <PUnitario></PUnitario>
+    <PrecioTotal></PrecioTotal>
+    <ProcFlag></ProcFlag>
+    <FProc></FProc>
+    <EstProc></EstProc>
+    <HComand></HComand>
+    <OrigComand></OrigComand>
+    <PrecioUnitarioFinal></PrecioUnitarioFinal>
+    <PrecioTotalFinal></PrecioTotalFinal>
+    <DoctoRelTDocto />
+    <DoctoRelNroDocto />
+    <ValeNro />
+    <Notas></Notas>
+  </DetalleDocumentosFacturacion>
+</DocumentElement>

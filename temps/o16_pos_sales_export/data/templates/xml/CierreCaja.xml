@@ -1,0 +1,19 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <CierreCaja>
+    <FProceso></FProceso>
+    <CiaSocio></CiaSocio>
+    <AlmCod></AlmCod>
+    <IdBach></IdBach>
+    <NroLiquidacion></NroLiquidacion>
+    <FApertura></FApertura>
+    <FCierre></FCierre>
+    <RespNro></RespNro>
+    <Cajero></Cajero>
+    <FdoIniMonLoc></FdoIniMonLoc>
+    <FdoIniMonExt></FdoIniMonExt>
+    <ProcFlag></ProcFlag>
+    <FProc></FProc>
+    <EstProc>PE</EstProc>
+  </CierreCaja>
+</DocumentElement>

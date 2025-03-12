@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Menú Principal -->
+    <menuitem id="menu_field_management_root"
+        name="Gestión de Canchas"
+        web_icon="o16_field_management,static/description/icon.png"
+        sequence="10"/>
+
+    <!-- Submenús Principales -->
+    <menuitem id="menu_field_management_operations"
+        name="Operaciones"
+        parent="menu_field_management_root"
+        sequence="10"/>
+
+    <menuitem id="menu_field_management_field_button"
+        name="Canchas"
+        parent="menu_field_management_root"
+        action="action_field_management_field"
+        sequence="20"/>
+
+    <menuitem id="menu_field_management_league"
+        name="Liga"
+        parent="menu_field_management_root"
+        sequence="30"/>
+
+    <!-- Elementos del menú Operaciones -->
+    <menuitem id="menu_field_management_dashboard"
+        name="Panel de Control"
+        parent="menu_field_management_operations"
+        action="action_field_management_dashboard"
+        sequence="10"/>
+
+    <menuitem id="menu_field_management_rental"
+        name="Alquileres"
+        parent="menu_field_management_operations"
+        action="action_field_management_rental"
+        sequence="20"/>
+
+    <menuitem id="menu_field_management_reservation"
+        name="Reservas"
+        parent="menu_field_management_operations"
+        action="action_field_management_reservation"
+        sequence="30"/>
+
+    <!-- Elementos del menú Liga -->
+    <menuitem id="menu_field_management_player_league"
+        name="Jugadores"
+        parent="menu_field_management_league"
+        action="action_field_management_player"
+        sequence="10"/>
+
+    <menuitem id="menu_field_management_team_league"
+        name="Equipos"
+        parent="menu_field_management_league"
+        action="action_field_management_team"
+        sequence="20"/>
+
+    <menuitem id="menu_field_management_match"
+        name="Partidos"
+        parent="menu_field_management_league"
+        action="action_field_management_match"
+        sequence="30"/>
+</odoo> 

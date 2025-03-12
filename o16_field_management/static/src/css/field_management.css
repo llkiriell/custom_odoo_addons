@@ -1,0 +1,69 @@
+/* Estilos para las vistas kanban */
+.o_kanban_view.o_field_management_kanban {
+    .o_kanban_record {
+        padding: 8px;
+        min-height: 120px;
+    }
+}
+
+/* Estilos para estados en las vistas */
+.o_status_available {
+    color: #28a745;
+}
+
+.o_status_occupied {
+    color: #ffc107;
+}
+
+.o_status_maintenance {
+    color: #dc3545;
+}
+
+/* Estilos para el calendario */
+.o_calendar_view .o_calendar_widget .fc-view {
+    .fc-event {
+        &.o_calendar_color_0 { /* Disponible */
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+        &.o_calendar_color_1 { /* Ocupada */
+            background-color: #ffc107;
+            border-color: #ffc107;
+        }
+        &.o_calendar_color_2 { /* Mantenimiento */
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+    }
+}
+
+.o_field_management_dashboard {
+    padding: 16px;
+}
+
+.o_field_management_kanban {
+    background-color: #ffffff;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    margin-bottom: 16px;
+}
+
+.o_field_management_kanban .o_kanban_record_title {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #2b2b2b;
+}
+
+.o_field_management_kanban .o_kanban_tags_section {
+    margin: 8px 0;
+}
+
+.o_field_management_kanban .badge {
+    font-size: 0.9em;
+    padding: 4px 8px;
+}
+
+.o_field_management_kanban .o_dashboard_graph {
+    min-height: 100px;
+    margin-top: 16px;
+} 

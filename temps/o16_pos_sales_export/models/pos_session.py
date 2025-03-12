@@ -6,6 +6,9 @@ import base64, os, io
 import xml.etree.ElementTree as ET
 import xml.dom.minidom
 import zipfile
+import logging
+
+_logger = logging.getLogger(__name__)
 
 class PosSession(models.Model):
     _inherit = 'pos.session'
@@ -196,21 +199,22 @@ class PosSession(models.Model):
     def action_download_zip(self):
         # Asegura tomar un solo elemento
         self.ensure_one()
-        
+
+        try:
+            # Asumiendo que tienes el attachment
+            self.message_post(
+                body=f"""Se descargó el archivo ZIP de la sesión {self.name}
+                Fecha de descarga: {fields.Datetime.now()}
+                Usuario: {self.env.user.name}""",
+                message_type='notification',
+                subtype_id=self.env.ref('mail.mt_note').id
+            )
+        except Exception as e:
+            _logger.error(f"Error al registrar el mensaje en el chatter: {str(e)}")
+
         # Devuelve la acción de descarga
         return {
             'type': 'ir.actions.act_url',
             'url': f'/pos_session/download_zip/{self.id}',
             'target': 'new'
-        }
-
-    def action_export_zip(self):
-        """Abre un popup para configurar y ejecutar la exportación de datos de la sesión en formato ZIP."""
-        return {
-            'type': 'ir.actions.act_window',
-            'name': 'Exportar en .zip',  # Título del popup
-            'res_model': 'export.pos.sales', # El modelo del wizard.  Debe existir.
-            'view_mode': 'form',
-            'target': 'new',
-            'context': {'default_message': 'Este es un mensaje de prueba para la exportación en .zip.'}, # Mensaje de prueba
         }

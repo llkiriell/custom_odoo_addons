@@ -1,0 +1,61 @@
+<odoo>
+    <record id="view_export_pos_sales_form" model="ir.ui.view">
+        <field name="name">export.pos.sales.form</field>
+        <field name="model">export.pos.sales</field>
+        <field name="arch" type="xml">
+            <form string="Exportar Ventas POS">
+                <sheet>
+                    <div class="row">
+                        <div class="col-7">
+                            <group>
+                                <field name="all_dates"/>
+                                <field name="date_start" widget="datetime" attrs="{'invisible': [('all_dates', '=', True)], 'required': [('all_dates', '=', False)]}"/>
+                                <field name="date_end" widget="datetime" attrs="{'invisible': [('all_dates', '=', True)], 'required': [('all_dates', '=', False)]}"/>
+                            </group>
+                        </div>
+                        <div class="col-5">
+                            <group>
+                                <field name="formato_exportacion" widget="radio"/>
+                                <field name="send_email"/>
+                                <field name="email" 
+                                       attrs="{'invisible': [('send_email', '=', False)], 'required': [('send_email', '=', True)]}"
+                                       options="{
+                                           'no_create': True, 
+                                           'no_create_edit': True,
+                                           'no_open': True
+                                       }"
+                                       placeholder="Ingrese correo electrónico"/>
+                            </group>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-3">
+                        <div class="border p-3">
+                            <h4>Documentos a Exportar</h4>
+                            <div class="row">
+                                <div class="col-12">
+                                    <group col="1" class="o_label_nowrap">
+                                        <field name="cabecera_documentos" nolabel="0"/>
+                                        <field name="cierre_caja" nolabel="0"/>
+                                        <field name="detalle_facturacion" nolabel="0"/>
+                                        <field name="detalle_inventario" nolabel="0"/>
+                                        <field name="detalle_cobranza" nolabel="0"/>
+                                    </group>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <field name="message" invisible="1"/>
+                    <field name="session_id" invisible="1"/>
+                    <field name="session_name" invisible="1"/>
+                    <field name="email_text" invisible="1"/>
+                </sheet>
+                <footer>
+                    <button name="action_export" string="Exportar" type="object" class="btn-primary"/>
+                    <button string="Cerrar" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

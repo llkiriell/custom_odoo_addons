@@ -1,0 +1,23 @@
+Requisitos para el banner de la aplicación:
+
+1. Archivo: banner.png
+2. Ubicación: o16_field_management/static/description/banner.png
+3. Dimensiones recomendadas: 560x280 píxeles
+4. Formato: PNG
+
+Elementos sugeridos:
+1. Título principal: "Gestión de Canchas"
+2. Subtítulo: "Sistema integral para administración de canchas de fútbol"
+3. Elementos visuales:
+   - Imagen de fondo de una cancha de fútbol
+   - Elementos de reserva/calendario
+   - Iconos de gestión
+4. Colores:
+   - Verde césped como color predominante
+   - Blanco para textos principales
+   - Acentos en colores corporativos
+
+El banner se mostrará:
+- En la tienda de aplicaciones de Odoo
+- En la página de descripción del módulo
+- En la documentación del módulo 

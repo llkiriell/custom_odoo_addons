@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_field_management_field_user,field_management.field.user,model_field_management_field,base.group_user,1,0,0,0
+access_field_management_field_manager,field_management.field.manager,model_field_management_field,base.group_system,1,1,1,1
+access_field_management_reservation_user,field_management.reservation.user,model_field_management_reservation,base.group_user,1,1,1,0
+access_field_management_reservation_manager,field_management.reservation.manager,model_field_management_reservation,base.group_system,1,1,1,1
+access_field_management_team_user,field_management.team.user,model_field_management_team,base.group_user,1,1,1,0
+access_field_management_team_manager,field_management.team.manager,model_field_management_team,base.group_system,1,1,1,1
+access_field_management_match_user,field_management.match.user,model_field_management_match,base.group_user,1,1,1,0
+access_field_management_match_manager,field_management.match.manager,model_field_management_match,base.group_system,1,1,1,1 

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Heredar vista de formulario de contactos -->
+    <record id="view_partner_form_inherit_field_management" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit.field.management</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Información de Jugador" name="player_info" attrs="{'invisible': [('is_player', '=', False)]}">
+                    <group>
+                        <group>
+                            <field name="is_player"/>
+                            <field name="position" attrs="{'required': [('is_player', '=', True)]}"/>
+                        </group>
+                        <group>
+                            <field name="total_matches"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Equipos" name="teams">
+                            <field name="team_ids">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="captain_id"/>
+                                    <field name="total_matches"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Partidos" name="matches">
+                            <field name="match_ids">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="match_date"/>
+                                    <field name="field_id"/>
+                                    <field name="score_team_1"/>
+                                    <field name="score_team_2"/>
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Reservas" name="reservations">
+                            <field name="reservation_ids">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="field_id"/>
+                                    <field name="start_datetime"/>
+                                    <field name="end_datetime"/>
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Vista de búsqueda heredada -->
+    <record id="view_res_partner_filter_inherit_field_management" model="ir.ui.view">
+        <field name="name">res.partner.select.inherit.field.management</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter"/>
+        <field name="arch" type="xml">
+            <filter name="type_company" position="after">
+                <filter string="Jugadores" name="players" domain="[('is_player', '=', True)]"/>
+            </filter>
+            <filter name="salesperson" position="after">
+                <filter string="Posición" name="position" context="{'group_by': 'position'}"/>
+            </filter>
+        </field>
+    </record>
+
+    <!-- Acción para ver solo jugadores -->
+    <record id="action_field_management_player" model="ir.actions.act_window">
+        <field name="name">Jugadores</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="domain">[('is_player', '=', True)]</field>
+        <field name="context">{'default_is_player': True}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                ¡Registra tu primer jugador!
+            </p>
+            <p>
+                Crea un jugador para poder incluirlo en equipos y partidos.
+            </p>
+        </field>
+    </record>
+</odoo> 

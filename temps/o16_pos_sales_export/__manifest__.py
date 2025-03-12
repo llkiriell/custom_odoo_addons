@@ -10,9 +10,7 @@
     'category': 'Sales',
     'depends': ['base', 'point_of_sale'],
     'data': [
-        'security/ir.model.access.csv',
-        'views/pos_session_exporter_view.xml',
-        'views/export_pos_sales_view.xml',
+        'views/pos_session_exporter_view.xml'
     ],
     'installable': True,
     'application': False,

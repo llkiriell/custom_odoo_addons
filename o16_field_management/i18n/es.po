@@ -1,0 +1,91 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* o16_field_management
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-15 12:00+0000\n"
+"PO-Revision-Date: 2024-01-15 12:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: o16_field_management
+#: model:ir.model.fields.selection,name:o16_field_management.selection__field_management_field__state__available
+msgid "Available"
+msgstr "Disponible"
+
+#. module: o16_field_management
+#: model:ir.model.fields,field_description:o16_field_management.field_field_management_field__capacity
+msgid "Maximum Capacity"
+msgstr "Capacidad Máxima"
+
+#. module: o16_field_management
+#: model:ir.model.fields,field_description:o16_field_management.field_field_management_field__price_per_hour
+msgid "Price per Hour"
+msgstr "Precio por Hora"
+
+#. module: o16_field_management
+#: model:ir.model.fields,field_description:o16_field_management.field_field_management_reservation__duration
+msgid "Duration (hours)"
+msgstr "Duración (horas)"
+
+#. module: o16_field_management
+#: model:ir.model.fields,field_description:o16_field_management.field_field_management_reservation__total_amount
+msgid "Total Amount"
+msgstr "Monto Total"
+
+#. module: o16_field_management
+#: model:ir.model.fields.selection,name:o16_field_management.selection__field_management_match__state__draft
+msgid "Scheduled"
+msgstr "Programado"
+
+#. module: o16_field_management
+#: model:ir.model.fields.selection,name:o16_field_management.selection__field_management_match__state__in_progress
+msgid "In Progress"
+msgstr "En Progreso"
+
+#. module: o16_field_management
+#: model:ir.model.fields.selection,name:o16_field_management.selection__field_management_match__state__done
+msgid "Finished"
+msgstr "Finalizado"
+
+#. module: o16_field_management
+#: model:ir.model.fields.selection,name:o16_field_management.selection__field_management_match__state__cancelled
+msgid "Cancelled"
+msgstr "Cancelado"
+
+#. module: o16_field_management
+#: model:ir.model.fields,field_description:o16_field_management.field_res_partner__is_player
+msgid "Is Player"
+msgstr "Es Jugador"
+
+#. module: o16_field_management
+#: model:ir.model.fields,field_description:o16_field_management.field_res_partner__position
+msgid "Position"
+msgstr "Posición"
+
+#. module: o16_field_management
+#: model:ir.model.fields.selection,name:o16_field_management.selection__res_partner__position__goalkeeper
+msgid "Goalkeeper"
+msgstr "Portero"
+
+#. module: o16_field_management
+#: model:ir.model.fields.selection,name:o16_field_management.selection__res_partner__position__defender
+msgid "Defender"
+msgstr "Defensa"
+
+#. module: o16_field_management
+#: model:ir.model.fields.selection,name:o16_field_management.selection__res_partner__position__midfielder
+msgid "Midfielder"
+msgstr "Mediocampista"
+
+#. module: o16_field_management
+#: model:ir.model.fields.selection,name:o16_field_management.selection__res_partner__position__forward
+msgid "Forward"
+msgstr "Delantero" 

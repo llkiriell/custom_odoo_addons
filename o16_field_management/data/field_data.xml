@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Canchas de demostración -->
+        <record id="field_1" model="field_management.field">
+            <field name="name">Cancha Principal</field>
+            <field name="location">Sector Norte, Área Deportiva Principal</field>
+            <field name="description">
+                <![CDATA[
+                <p>Cancha de fútbol sintética de última generación con:</p>
+                <ul>
+                    <li>Iluminación LED</li>
+                    <li>Grama sintética profesional</li>
+                    <li>Marcador electrónico</li>
+                    <li>Área de calentamiento</li>
+                </ul>
+                ]]>
+            </field>
+            <field name="capacity">14</field>
+            <field name="price_per_hour">50.00</field>
+            <field name="state">available</field>
+        </record>
+
+        <record id="field_2" model="field_management.field">
+            <field name="name">Cancha Techada</field>
+            <field name="location">Sector Sur, Complejo Deportivo</field>
+            <field name="description">
+                <![CDATA[
+                <p>Cancha techada ideal para jugar en cualquier clima:</p>
+                <ul>
+                    <li>Techo alto con ventilación natural</li>
+                    <li>Grama sintética de alta resistencia</li>
+                    <li>Sistema de sonido integrado</li>
+                    <li>Vestuarios con duchas</li>
+                </ul>
+                ]]>
+            </field>
+            <field name="capacity">12</field>
+            <field name="price_per_hour">45.00</field>
+            <field name="state">available</field>
+        </record>
+
+        <record id="field_3" model="field_management.field">
+            <field name="name">Cancha de Entrenamiento</field>
+            <field name="location">Sector Este, Área de Práctica</field>
+            <field name="description">
+                <![CDATA[
+                <p>Cancha especial para entrenamientos y prácticas:</p>
+                <ul>
+                    <li>Equipamiento de entrenamiento incluido</li>
+                    <li>Grama sintética de alta densidad</li>
+                    <li>Área de ejercicios</li>
+                    <li>Bebederos y bancos</li>
+                </ul>
+                ]]>
+            </field>
+            <field name="capacity">10</field>
+            <field name="price_per_hour">35.00</field>
+            <field name="state">available</field>
+        </record>
+
+        <record id="field_4" model="field_management.field">
+            <field name="name">Cancha Premium</field>
+            <field name="location">Sector Central, Zona VIP</field>
+            <field name="description">
+                <![CDATA[
+                <p>Cancha premium con servicios exclusivos:</p>
+                <ul>
+                    <li>Grama sintética profesional FIFA Quality Pro</li>
+                    <li>Sistema de refrigeración ambiental</li>
+                    <li>Área VIP para espectadores</li>
+                    <li>Servicio de hidratación incluido</li>
+                    <li>Vestuarios premium</li>
+                </ul>
+                ]]>
+            </field>
+            <field name="capacity">14</field>
+            <field name="price_per_hour">75.00</field>
+            <field name="state">available</field>
+        </record>
+
+        <record id="field_5" model="field_management.field">
+            <field name="name">Cancha de Torneos</field>
+            <field name="location">Sector Oeste, Área de Competencias</field>
+            <field name="description">
+                <![CDATA[
+                <p>Cancha diseñada para torneos y competencias:</p>
+                <ul>
+                    <li>Dimensiones oficiales FIFA</li>
+                    <li>Tribunas para espectadores</li>
+                    <li>Cabina de transmisión</li>
+                    <li>Sistema de grabación de partidos</li>
+                    <li>Marcador digital multifunción</li>
+                </ul>
+                ]]>
+            </field>
+            <field name="capacity">14</field>
+            <field name="price_per_hour">65.00</field>
+            <field name="state">available</field>
+        </record>
+
+        <!-- Jugadores de Demostración -->
+        <record id="demo_player_1" model="res.partner">
+            <field name="name">Juan Pérez</field>
+            <field name="email">juan.perez@example.com</field>
+            <field name="phone">+51 999888777</field>
+            <field name="is_player">True</field>
+            <field name="position">forward</field>
+        </record>
+
+        <record id="demo_player_2" model="res.partner">
+            <field name="name">Carlos García</field>
+            <field name="email">carlos.garcia@example.com</field>
+            <field name="phone">+51 999888666</field>
+            <field name="is_player">True</field>
+            <field name="position">midfielder</field>
+        </record>
+
+        <record id="demo_player_3" model="res.partner">
+            <field name="name">Luis Rodríguez</field>
+            <field name="email">luis.rodriguez@example.com</field>
+            <field name="phone">+51 999888555</field>
+            <field name="is_player">True</field>
+            <field name="position">defender</field>
+        </record>
+
+        <record id="demo_player_4" model="res.partner">
+            <field name="name">Miguel Torres</field>
+            <field name="email">miguel.torres@example.com</field>
+            <field name="phone">+51 999888444</field>
+            <field name="is_player">True</field>
+            <field name="position">goalkeeper</field>
+        </record>
+
+        <record id="demo_player_5" model="res.partner">
+            <field name="name">Ana Martínez</field>
+            <field name="email">ana.martinez@example.com</field>
+            <field name="phone">+51 999888333</field>
+            <field name="is_player">True</field>
+            <field name="position">forward</field>
+        </record>
+
+        <record id="demo_player_6" model="res.partner">
+            <field name="name">Pedro Sánchez</field>
+            <field name="email">pedro.sanchez@example.com</field>
+            <field name="phone">+51 999888222</field>
+            <field name="is_player">True</field>
+            <field name="position">midfielder</field>
+        </record>
+
+        <!-- Equipos de Demostración -->
+        <record id="demo_team_1" model="field_management.team">
+            <field name="name">Los Tigres FC</field>
+            <field name="captain_id" ref="demo_player_1"/>
+            <field name="players_ids" eval="[(6, 0, [ref('demo_player_1'), ref('demo_player_2')])]"/>
+        </record>
+
+        <!-- Equipos Adicionales -->
+        <record id="demo_team_2" model="field_management.team">
+            <field name="name">Leones Unidos</field>
+            <field name="captain_id" ref="demo_player_3"/>
+            <field name="players_ids" eval="[(6, 0, [ref('demo_player_3'), ref('demo_player_4')])]"/>
+        </record>
+
+        <record id="demo_team_3" model="field_management.team">
+            <field name="name">Águilas Doradas</field>
+            <field name="captain_id" ref="demo_player_5"/>
+            <field name="players_ids" eval="[(6, 0, [ref('demo_player_5'), ref('demo_player_6')])]"/>
+        </record>
+
+        <!-- Reserva de Demostración -->
+        <record id="demo_reservation_1" model="field_management.reservation">
+            <field name="customer_id" ref="demo_player_1"/>
+            <field name="field_id" ref="field_1"/>
+            <field name="start_datetime" eval="(datetime.now() + relativedelta(days=1)).strftime('%Y-%m-%d 15:00:00')"/>
+            <field name="end_datetime" eval="(datetime.now() + relativedelta(days=1)).strftime('%Y-%m-%d 16:00:00')"/>
+            <field name="team_id" ref="demo_team_1"/>
+            <field name="players_ids" eval="[(6, 0, [ref('demo_player_1'), ref('demo_player_2')])]"/>
+            <field name="state">draft</field>
+        </record>
+
+        <!-- Reservas Adicionales -->
+        <record id="demo_reservation_2" model="field_management.reservation">
+            <field name="customer_id" ref="demo_player_3"/>
+            <field name="field_id" ref="field_2"/>
+            <field name="start_datetime" eval="(datetime.now() + relativedelta(days=2)).strftime('%Y-%m-%d 17:00:00')"/>
+            <field name="end_datetime" eval="(datetime.now() + relativedelta(days=2)).strftime('%Y-%m-%d 18:00:00')"/>
+            <field name="team_id" ref="demo_team_2"/>
+            <field name="players_ids" eval="[(6, 0, [ref('demo_player_3'), ref('demo_player_4')])]"/>
+            <field name="state">confirmed</field>
+        </record>
+
+        <record id="demo_reservation_3" model="field_management.reservation">
+            <field name="customer_id" ref="demo_player_5"/>
+            <field name="field_id" ref="field_4"/>
+            <field name="start_datetime" eval="(datetime.now() + relativedelta(days=3)).strftime('%Y-%m-%d 19:00:00')"/>
+            <field name="end_datetime" eval="(datetime.now() + relativedelta(days=3)).strftime('%Y-%m-%d 20:00:00')"/>
+            <field name="team_id" ref="demo_team_3"/>
+            <field name="players_ids" eval="[(6, 0, [ref('demo_player_5'), ref('demo_player_6')])]"/>
+            <field name="state">confirmed</field>
+        </record>
+
+        <!-- Partidos de Demostración -->
+        <record id="demo_match_1" model="field_management.match">
+            <field name="name">Partido Amistoso - Tigres vs Leones</field>
+            <field name="date" eval="(datetime.now() + relativedelta(days=1)).strftime('%Y-%m-%d')"/>
+            <field name="field_id" ref="field_1"/>
+            <field name="team_1_id" ref="demo_team_1"/>
+            <field name="team_2_id" ref="demo_team_2"/>
+            <field name="type">friendly</field>
+            <field name="state">scheduled</field>
+        </record>
+
+        <record id="demo_match_2" model="field_management.match">
+            <field name="name">Torneo Local - Águilas vs Tigres</field>
+            <field name="date" eval="(datetime.now() + relativedelta(days=4)).strftime('%Y-%m-%d')"/>
+            <field name="field_id" ref="field_5"/>
+            <field name="team_1_id" ref="demo_team_3"/>
+            <field name="team_2_id" ref="demo_team_1"/>
+            <field name="type">tournament</field>
+            <field name="state">scheduled</field>
+        </record>
+
+        <!-- Reservaciones Pasadas -->
+        <record id="demo_reservation_past_1" model="field_management.reservation">
+            <field name="field_id" ref="field_3"/>
+            <field name="start_datetime" eval="(datetime.now() - relativedelta(days=1)).strftime('%Y-%m-%d 10:00:00')"/>
+            <field name="end_datetime" eval="(datetime.now() - relativedelta(days=1)).strftime('%Y-%m-%d 11:00:00')"/>
+            <field name="state">done</field>
+            <field name="notes">Reserva walk-in - Grupo informal</field>
+        </record>
+
+        <record id="demo_reservation_past_2" model="field_management.reservation">
+            <field name="customer_id" ref="demo_player_2"/>
+            <field name="field_id" ref="field_1"/>
+            <field name="start_datetime" eval="(datetime.now() - relativedelta(days=1)).strftime('%Y-%m-%d 15:00:00')"/>
+            <field name="end_datetime" eval="(datetime.now() - relativedelta(days=1)).strftime('%Y-%m-%d 16:00:00')"/>
+            <field name="team_id" ref="demo_team_1"/>
+            <field name="players_ids" eval="[(6, 0, [ref('demo_player_1'), ref('demo_player_2')])]"/>
+            <field name="state">done</field>
+        </record>
+
+        <record id="demo_reservation_past_3" model="field_management.reservation">
+            <field name="field_id" ref="field_2"/>
+            <field name="start_datetime" eval="(datetime.now() - relativedelta(days=2)).strftime('%Y-%m-%d 18:00:00')"/>
+            <field name="end_datetime" eval="(datetime.now() - relativedelta(days=2)).strftime('%Y-%m-%d 19:00:00')"/>
+            <field name="state">done</field>
+            <field name="notes">Reserva walk-in - Partido casual</field>
+        </record>
+
+        <!-- Reservaciones para Hoy -->
+        <record id="demo_reservation_today_1" model="field_management.reservation">
+            <field name="field_id" ref="field_4"/>
+            <field name="start_datetime" eval="datetime.now().strftime('%Y-%m-%d 14:00:00')"/>
+            <field name="end_datetime" eval="datetime.now().strftime('%Y-%m-%d 15:00:00')"/>
+            <field name="state">confirmed</field>
+            <field name="notes">Reserva walk-in - Grupo empresarial</field>
+        </record>
+
+        <record id="demo_reservation_today_2" model="field_management.reservation">
+            <field name="customer_id" ref="demo_player_4"/>
+            <field name="field_id" ref="field_5"/>
+            <field name="start_datetime" eval="datetime.now().strftime('%Y-%m-%d 16:00:00')"/>
+            <field name="end_datetime" eval="datetime.now().strftime('%Y-%m-%d 17:00:00')"/>
+            <field name="team_id" ref="demo_team_2"/>
+            <field name="state">in_progress</field>
+        </record>
+
+        <!-- Reservaciones para Mañana -->
+        <record id="demo_reservation_tomorrow_1" model="field_management.reservation">
+            <field name="field_id" ref="field_3"/>
+            <field name="start_datetime" eval="(datetime.now() + relativedelta(days=1)).strftime('%Y-%m-%d 09:00:00')"/>
+            <field name="end_datetime" eval="(datetime.now() + relativedelta(days=1)).strftime('%Y-%m-%d 10:00:00')"/>
+            <field name="state">confirmed</field>
+            <field name="notes">Reserva walk-in - Entrenamiento personal</field>
+        </record>
+
+        <record id="demo_reservation_tomorrow_2" model="field_management.reservation">
+            <field name="customer_id" ref="demo_player_6"/>
+            <field name="field_id" ref="field_2"/>
+            <field name="start_datetime" eval="(datetime.now() + relativedelta(days=1)).strftime('%Y-%m-%d 11:00:00')"/>
+            <field name="end_datetime" eval="(datetime.now() + relativedelta(days=1)).strftime('%Y-%m-%d 12:00:00')"/>
+            <field name="team_id" ref="demo_team_3"/>
+            <field name="state">confirmed</field>
+        </record>
+
+        <record id="demo_reservation_tomorrow_3" model="field_management.reservation">
+            <field name="field_id" ref="field_1"/>
+            <field name="start_datetime" eval="(datetime.now() + relativedelta(days=1)).strftime('%Y-%m-%d 13:00:00')"/>
+            <field name="end_datetime" eval="(datetime.now() + relativedelta(days=1)).strftime('%Y-%m-%d 14:00:00')"/>
+            <field name="state">draft</field>
+            <field name="notes">Reserva walk-in pendiente - Grupo familiar</field>
+        </record>
+    </data>
+</odoo> 

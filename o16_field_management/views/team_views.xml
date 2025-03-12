@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Vista Tree -->
+    <record id="view_field_management_team_tree" model="ir.ui.view">
+        <field name="name">field_management.team.tree</field>
+        <field name="model">field_management.team</field>
+        <field name="arch" type="xml">
+            <tree string="Equipos">
+                <field name="name"/>
+                <field name="captain_id"/>
+                <field name="total_matches"/>
+                <field name="active" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vista Form -->
+    <record id="view_field_management_team_form" model="ir.ui.view">
+        <field name="name">field_management.team.form</field>
+        <field name="model">field_management.team</field>
+        <field name="arch" type="xml">
+            <form string="Equipo">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                            <field name="active" widget="boolean_button" options="{'terminology': 'archive'}"/>
+                        </button>
+                    </div>
+                    <field name="team_image" widget="image" class="oe_avatar"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Nombre del Equipo"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="captain_id" domain="[('is_player', '=', True)]"/>
+                            <field name="total_matches"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Jugadores" name="players">
+                            <field name="players_ids" domain="[('is_player', '=', True)]">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="phone"/>
+                                    <field name="email"/>
+                                    <field name="position"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Partidos de Local" name="home_matches">
+                            <field name="match_ids">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="match_date"/>
+                                    <field name="team_2_id"/>
+                                    <field name="score_team_1"/>
+                                    <field name="score_team_2"/>
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Partidos de Visitante" name="away_matches">
+                            <field name="match_ids_2">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="match_date"/>
+                                    <field name="team_1_id"/>
+                                    <field name="score_team_1"/>
+                                    <field name="score_team_2"/>
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vista Kanban -->
+    <record id="view_field_management_team_kanban" model="ir.ui.view">
+        <field name="name">field_management.team.kanban</field>
+        <field name="model">field_management.team</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile">
+                <field name="id"/>
+                <field name="name"/>
+                <field name="captain_id"/>
+                <field name="total_matches"/>
+                <field name="team_image"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click">
+                            <div class="o_kanban_image">
+                                <img t-att-src="kanban_image('field_management.team', 'team_image', record.id.raw_value)" alt="Team Image"/>
+                            </div>
+                            <div class="oe_kanban_details">
+                                <strong class="o_kanban_record_title">
+                                    <field name="name"/>
+                                </strong>
+                                <div>
+                                    <strong>Capitán: </strong><field name="captain_id"/>
+                                </div>
+                                <div>
+                                    <strong>Partidos: </strong><field name="total_matches"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Vista Search -->
+    <record id="view_field_management_team_search" model="ir.ui.view">
+        <field name="name">field_management.team.search</field>
+        <field name="model">field_management.team</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Equipos">
+                <field name="name"/>
+                <field name="captain_id"/>
+                <field name="players_ids"/>
+                <separator/>
+                <filter string="Equipos Activos" name="active" domain="[('active', '=', True)]"/>
+                <group expand="0" string="Agrupar Por">
+                    <filter string="Capitán" name="captain" context="{'group_by': 'captain_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Acción de Ventana -->
+    <record id="action_field_management_team" model="ir.actions.act_window">
+        <field name="name">Equipos</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">field_management.team</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                ¡Crea tu primer equipo!
+            </p>
+            <p>
+                Crea un equipo para gestionar sus jugadores y partidos.
+            </p>
+        </field>
+    </record>
+</odoo> 

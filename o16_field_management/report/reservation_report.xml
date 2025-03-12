@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_reservation">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>Comprobante de Reserva</h2>
+                        <div class="row mt32 mb32">
+                            <div class="col-6">
+                                <strong>Referencia:</strong>
+                                <span t-field="o.name"/>
+                                <br/>
+                                <strong>Cliente:</strong>
+                                <span t-field="o.customer_id"/>
+                                <br/>
+                                <strong>Cancha:</strong>
+                                <span t-field="o.field_id"/>
+                            </div>
+                            <div class="col-6">
+                                <strong>Fecha y Hora de Inicio:</strong>
+                                <span t-field="o.start_datetime"/>
+                                <br/>
+                                <strong>Fecha y Hora de Fin:</strong>
+                                <span t-field="o.end_datetime"/>
+                                <br/>
+                                <strong>Duración:</strong>
+                                <span t-field="o.duration"/> horas
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <strong>Equipo:</strong>
+                                <span t-field="o.team_id"/>
+                            </div>
+                        </div>
+                        <div class="row mt32">
+                            <div class="col-12">
+                                <strong>Jugadores:</strong>
+                                <table class="table table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Teléfono</th>
+                                            <th>Posición</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr t-foreach="o.players_ids" t-as="player">
+                                            <td><span t-field="player.name"/></td>
+                                            <td><span t-field="player.phone"/></td>
+                                            <td><span t-field="player.position"/></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row mt32">
+                            <div class="col-12">
+                                <strong>Monto Total:</strong>
+                                <span t-field="o.total_amount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                            </div>
+                        </div>
+                        <div class="row mt32">
+                            <div class="col-12">
+                                <p class="text-center">
+                                    <small>Este documento es un comprobante de reserva y debe ser presentado al momento de usar la cancha.</small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_reservation" model="ir.actions.report">
+        <field name="name">Comprobante de Reserva</field>
+        <field name="model">field_management.reservation</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">o16_field_management.report_reservation</field>
+        <field name="report_file">o16_field_management.report_reservation</field>
+        <field name="print_report_name">'Reserva - %s' % object.name</field>
+        <field name="binding_model_id" ref="model_field_management_reservation"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo> 

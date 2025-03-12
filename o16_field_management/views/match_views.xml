@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Vista de árbol para partidos -->
+    <record id="view_field_management_match_tree" model="ir.ui.view">
+        <field name="name">field_management.match.tree</field>
+        <field name="model">field_management.match</field>
+        <field name="arch" type="xml">
+            <tree string="Partidos">
+                <field name="name"/>
+                <field name="match_date"/>
+                <field name="field_id"/>
+                <field name="team_1_id"/>
+                <field name="team_2_id"/>
+                <field name="score_team_1"/>
+                <field name="score_team_2"/>
+                <field name="state" widget="badge" 
+                    decoration-info="state == 'draft'" 
+                    decoration-success="state in ('confirmed', 'in_progress')" 
+                    decoration-warning="state == 'done'" 
+                    decoration-danger="state == 'cancelled'"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vista de formulario para partidos -->
+    <record id="view_field_management_match_form" model="ir.ui.view">
+        <field name="name">field_management.match.form</field>
+        <field name="model">field_management.match</field>
+        <field name="arch" type="xml">
+            <form string="Partido">
+                <header>
+                    <button name="action_confirm" string="Confirmar" type="object" 
+                        class="oe_highlight" states="draft"/>
+                    <button name="action_start" string="Iniciar" type="object" 
+                        class="oe_highlight" states="confirmed"/>
+                    <button name="action_done" string="Finalizar" type="object" 
+                        class="oe_highlight" states="in_progress"/>
+                    <button name="action_cancel" string="Cancelar" type="object" 
+                        states="draft,confirmed,in_progress"/>
+                    <button name="action_draft" string="Volver a Borrador" type="object" 
+                        states="cancelled"/>
+                    <field name="state" widget="statusbar" 
+                        statusbar_visible="draft,confirmed,in_progress,done"/>
+                </header>
+                <sheet>
+                    <field name="has_previous_matches" invisible="1"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="field_id"/>
+                            <field name="match_date"/>
+                            <field name="duration" widget="float_time"/>
+                            <field name="rental_id" options="{'no_create': True}" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="team_1_id"/>
+                            <field name="team_2_id"/>
+                            <field name="score_team_1" attrs="{'readonly': [('state', 'not in', ['in_progress', 'done'])]}"/>
+                            <field name="score_team_2" attrs="{'readonly': [('state', 'not in', ['in_progress', 'done'])]}"/>
+                            <field name="winner_id" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook attrs="{'invisible': [('has_previous_matches', '=', False)]}">
+                        <page string="Historial de Enfrentamientos" name="match_history">
+                            <field name="match_history_ids" readonly="1">
+                                <tree>
+                                    <field name="match_date"/>
+                                    <field name="team_1_id"/>
+                                    <field name="score_team_1"/>
+                                    <field name="score_team_2"/>
+                                    <field name="team_2_id"/>
+                                    <field name="winner_id"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vista de búsqueda para partidos -->
+    <record id="view_field_management_match_search" model="ir.ui.view">
+        <field name="name">field_management.match.search</field>
+        <field name="model">field_management.match</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Partidos">
+                <field name="name"/>
+                <field name="field_id"/>
+                <field name="team_1_id"/>
+                <field name="team_2_id"/>
+                <field name="winner_id"/>
+                <separator/>
+                <filter string="Mis Partidos" name="my_matches" domain="['|', ('team_1_id.captain_id', '=', uid), ('team_2_id.captain_id', '=', uid)]"/>
+                <separator/>
+                <filter string="Borradores" name="draft" domain="[('state', '=', 'draft')]"/>
+                <filter string="Confirmados" name="confirmed" domain="[('state', '=', 'confirmed')]"/>
+                <filter string="En Progreso" name="in_progress" domain="[('state', '=', 'in_progress')]"/>
+                <filter string="Finalizados" name="done" domain="[('state', '=', 'done')]"/>
+                <filter string="Cancelados" name="cancelled" domain="[('state', '=', 'cancelled')]"/>
+                <group expand="0" string="Agrupar Por">
+                    <filter string="Cancha" name="field" context="{'group_by': 'field_id'}"/>
+                    <filter string="Estado" name="state" context="{'group_by': 'state'}"/>
+                    <filter string="Equipo Local" name="team_1" context="{'group_by': 'team_1_id'}"/>
+                    <filter string="Equipo Visitante" name="team_2" context="{'group_by': 'team_2_id'}"/>
+                    <filter string="Ganador" name="winner" context="{'group_by': 'winner_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Acción de ventana para partidos -->
+    <record id="action_field_management_match" model="ir.actions.act_window">
+        <field name="name">Partidos</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">field_management.match</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                ¡Registra tu primer partido!
+            </p>
+            <p>
+                Crea un partido para gestionar los encuentros entre equipos.
+            </p>
+        </field>
+    </record>
+</odoo> 

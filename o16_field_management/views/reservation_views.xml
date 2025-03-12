@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Vista Tree -->
+    <record id="view_field_management_reservation_tree" model="ir.ui.view">
+        <field name="name">field_management.reservation.tree</field>
+        <field name="model">field_management.reservation</field>
+        <field name="arch" type="xml">
+            <tree string="Reservas" decoration-info="state=='draft'" decoration-success="state=='confirmed'" decoration-muted="state=='cancelled'" decoration-warning="state=='done'">
+                <field name="name"/>
+                <field name="customer_id"/>
+                <field name="field_id"/>
+                <field name="start_datetime"/>
+                <field name="end_datetime"/>
+                <field name="duration" widget="float_time"/>
+                <field name="team_id"/>
+                <field name="total_amount" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                <field name="currency_id" invisible="1"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vista Form -->
+    <record id="view_field_management_reservation_form" model="ir.ui.view">
+        <field name="name">field_management.reservation.form</field>
+        <field name="model">field_management.reservation</field>
+        <field name="arch" type="xml">
+            <form string="Reserva">
+                <header>
+                    <button name="action_confirm" string="Confirmar" type="object" class="oe_highlight"
+                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                    <button name="action_done" string="Completar" type="object" class="oe_highlight"
+                            attrs="{'invisible': [('state', '!=', 'confirmed')]}"/>
+                    <button name="action_cancel" string="Cancelar" type="object"
+                            attrs="{'invisible': [('state', '=', 'done')]}"/>
+                    <button name="action_draft" string="Volver a Borrador" type="object"
+                            attrs="{'invisible': [('state', '!=', 'cancelled')]}"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,done"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="customer_id"/>
+                            <field name="field_id" domain="[('state', '=', 'available')]" options="{'no_create': True}"/>
+                            <field name="team_id" options="{'no_create': True}"/>
+                        </group>
+                        <group>
+                            <field name="start_datetime"/>
+                            <field name="end_datetime"/>
+                            <field name="duration" widget="float_time"/>
+                            <field name="total_amount" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Jugadores" name="players">
+                            <field name="players_ids" domain="[('is_player', '=', True)]" context="{'default_is_player': True}">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="phone"/>
+                                    <field name="email"/>
+                                    <field name="position"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vista Calendario -->
+    <record id="view_field_management_reservation_calendar" model="ir.ui.view">
+        <field name="name">field_management.reservation.calendar</field>
+        <field name="model">field_management.reservation</field>
+        <field name="arch" type="xml">
+            <calendar string="Reservas" 
+                     date_start="start_datetime" 
+                     date_stop="end_datetime" 
+                     color="field_id" 
+                     quick_add="False" 
+                     mode="week" 
+                     event_open_popup="True"
+                     event_limit="5"
+                     form_view_id="%(view_field_management_reservation_form)d">
+                <field name="name"/>
+                <field name="customer_id" filters="1" avatar_field="image_128"/>
+                <field name="field_id" filters="1"/>
+                <field name="team_id" filters="1"/>
+                <field name="total_amount" widget="monetary"/>
+                <field name="currency_id" invisible="1"/>
+                <field name="state" filters="1"/>
+            </calendar>
+        </field>
+    </record>
+
+    <!-- Vista Search -->
+    <record id="view_field_management_reservation_search" model="ir.ui.view">
+        <field name="name">field_management.reservation.search</field>
+        <field name="model">field_management.reservation</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Reservas">
+                <field name="name"/>
+                <field name="customer_id"/>
+                <field name="field_id"/>
+                <field name="team_id"/>
+                <field name="state"/>
+                <separator/>
+                <filter string="Mis Reservas" name="my_reservations" domain="[('create_uid', '=', uid)]"/>
+                <filter string="Pendientes" name="draft" domain="[('state', '=', 'draft')]"/>
+                <filter string="Confirmadas" name="confirmed" domain="[('state', '=', 'confirmed')]"/>
+                <filter string="Completadas" name="done" domain="[('state', '=', 'done')]"/>
+                <filter string="Canceladas" name="cancelled" domain="[('state', '=', 'cancelled')]"/>
+                <separator/>
+                <filter string="Hoy" name="today" domain="[('start_datetime', '&gt;=', datetime.datetime.combine(context_today(), datetime.time(0,0,0))), ('start_datetime', '&lt;=', datetime.datetime.combine(context_today(), datetime.time(23,59,59)))]"/>
+                <filter string="Esta Semana" name="this_week" domain="[('start_datetime', '&gt;=', (context_today() + relativedelta(weeks=-1,days=1,weekday=0)).strftime('%Y-%m-%d')), ('start_datetime', '&lt;=', (context_today() + relativedelta(weeks=0,days=-1,weekday=6)).strftime('%Y-%m-%d'))]"/>
+                <group expand="0" string="Agrupar Por">
+                    <filter string="Cliente" name="customer" context="{'group_by': 'customer_id'}"/>
+                    <filter string="Cancha" name="field" context="{'group_by': 'field_id'}"/>
+                    <filter string="Estado" name="state" context="{'group_by': 'state'}"/>
+                    <filter string="Fecha" name="start_datetime" context="{'group_by': 'start_datetime:day'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Acción de Ventana -->
+    <record id="action_field_management_reservation" model="ir.actions.act_window">
+        <field name="name">Reservas</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">field_management.reservation</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                ¡Crea tu primera reserva!
+            </p>
+            <p>
+                Crea una reserva para comenzar a gestionar el uso de las canchas.
+            </p>
+        </field>
+    </record>
+</odoo> 

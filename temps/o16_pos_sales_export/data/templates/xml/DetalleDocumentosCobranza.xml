@@ -14,7 +14,7 @@
     <MontoPago></MontoPago>
     <TarCredCod></TarCredCod>
     <DoctoRef></DoctoRef>
-    <NroAutor></NroAutor>
+    <NroAutor />
     <Propina></Propina>
     <ProcFlag></ProcFlag>
     <FProc></FProc>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Categoría de Seguridad -->
+        <record id="module_category_field_management" model="ir.module.category">
+            <field name="name">Gestión de Canchas</field>
+            <field name="description">Gestión de canchas deportivas</field>
+            <field name="sequence">10</field>
+        </record>
+
+        <!-- Grupo Usuario -->
+        <record id="group_field_management_user" model="res.groups">
+            <field name="name">Usuario</field>
+            <field name="category_id" ref="module_category_field_management"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="comment">Usuario que puede crear reservas y alquileres</field>
+        </record>
+
+        <!-- Grupo Administrador -->
+        <record id="group_field_management_manager" model="res.groups">
+            <field name="name">Administrador</field>
+            <field name="category_id" ref="module_category_field_management"/>
+            <field name="implied_ids" eval="[(4, ref('group_field_management_user'))]"/>
+            <field name="users" eval="[(4, ref('base.user_admin'))]"/>
+            <field name="comment">Administrador con acceso completo al módulo</field>
+        </record>
+
+        <!-- Regla Global para Canchas -->
+        <record id="field_management_field_rule" model="ir.rule">
+            <field name="name">Campos: acceso a todas las canchas</field>
+            <field name="model_id" ref="model_field_management_field"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('group_field_management_user'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <!-- Regla para Reservas: Los usuarios solo ven sus propias reservas -->
+        <record id="reservation_personal_rule" model="ir.rule">
+            <field name="name">Reservas Personales</field>
+            <field name="model_id" ref="model_field_management_reservation"/>
+            <field name="domain_force">[('create_uid', '=', user.id)]</field>
+            <field name="groups" eval="[(4, ref('group_field_management_user'))]"/>
+        </record>
+
+        <!-- Regla para Reservas: Los administradores ven todas las reservas -->
+        <record id="reservation_manager_rule" model="ir.rule">
+            <field name="name">Todas las Reservas</field>
+            <field name="model_id" ref="model_field_management_reservation"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('group_field_management_manager'))]"/>
+        </record>
+
+        <!-- Regla Global para Equipos -->
+        <record id="team_global_rule" model="ir.rule">
+            <field name="name">Todos los Equipos</field>
+            <field name="model_id" ref="model_field_management_team"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('group_field_management_user'))]"/>
+        </record>
+
+        <!-- Regla Global para Partidos -->
+        <record id="match_global_rule" model="ir.rule">
+            <field name="name">Todos los Partidos</field>
+            <field name="model_id" ref="model_field_management_match"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('group_field_management_user'))]"/>
+        </record>
+
+        <!-- Regla Global para Alquileres -->
+        <record id="rental_global_rule" model="ir.rule">
+            <field name="name">Todos los Alquileres</field>
+            <field name="model_id" ref="model_field_management_rental"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('group_field_management_user'))]"/>
+        </record>
+    </data>
+</odoo> 

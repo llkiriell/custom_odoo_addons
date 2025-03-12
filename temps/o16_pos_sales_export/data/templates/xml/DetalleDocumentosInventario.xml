@@ -1,0 +1,25 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <DetalleDocumentosInventario>
+    <FProceso></FProceso>
+    <CiaSocio></CiaSocio>
+    <AlmCod></AlmCod>
+    <IdBach></IdBach>
+    <TDocto></TDocto>
+    <NroDocto></NroDocto>
+    <Sec></Sec>
+    <Linea></Linea>
+    <TDet></TDet>
+    <ItemCodigo></ItemCodigo>
+    <Cant></Cant>
+    <CVta></CVta>
+    <IGVExon></IGVExon>
+    <PUnitario></PUnitario>
+    <PTotal></PTotal>
+    <ProcFlag></ProcFlag>
+    <FProc></FProc>
+    <EstProc></EstProc>
+    <Estado xml:space="preserve"></Estado>
+    <Notas></Notas>
+  </DetalleDocumentosInventario>
+</DocumentElement>

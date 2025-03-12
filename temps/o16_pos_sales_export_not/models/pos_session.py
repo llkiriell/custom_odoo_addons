@@ -1,5 +1,4 @@
-from odoo import models, tools, modules, fields, api,http
-from odoo.http import request
+from odoo import models, tools, modules, fields, api
 import json
 from io import BytesIO
 import base64, os, io
@@ -67,9 +66,7 @@ class PosSession(models.Model):
     # Metodo para generar un archivo XML
     def generate_xml(self, file_name, data_array):
         # Ruta absoluta de la plantilla
-        template_path = os.path.join(modules.get_module_path('o16_pos_sales_export'), 'data', 'templates', 'xml', file_name + '.xml')
-
-        etiqueta_padre = file_name;
+        template_path = os.path.join(modules.get_module_path('o16_pos_sales_export'), 'data', 'templates', 'xml', file_name)
 
         # Verificación de archivo
         if not os.path.exists(template_path):
@@ -80,12 +77,12 @@ class PosSession(models.Model):
         root = tree.getroot()
 
         # Eliminar contenido
-        for elem in root.findall(etiqueta_padre):
+        for elem in root.findall("CabeceraDocumentosEmitidos"):
             root.remove(elem)
 
         # Agregar datos a la plantilla dinamicamente
         for data in data_array:
-            cabecera_element = ET.Element(etiqueta_padre)
+            cabecera_element = ET.Element("CabeceraDocumentosEmitidos")
             # Cada clave corresponde a una etiqueta
             for key, value in data.items():
                 sub_element = ET.Element(key)
@@ -97,15 +94,14 @@ class PosSession(models.Model):
         # Codificacion de XML
         rough_string = ET.tostring(root, encoding='utf-8')
         reparsed = xml.dom.minidom.parseString(rough_string)
-        xml_string = "\n".join([line for line in reparsed.toprettyxml(indent="  ", encoding="utf-8").decode("utf-8").split("\n") if line.strip()])
-
+        xml_string = reparsed.toprettyxml(indent="  ", encoding="utf-8").decode("utf-8")
 
         # print(xml_string)
         # Nombre del archivo
-        # file_name = f"test_{file_name}.xml"
+        file_name = f"ventas_session_{self.name}.xml"
 
-        return f"test_{file_name}.xml", xml_string
-    
+        return file_name, xml_string
+
     # Metodo para generar un archivo ZIP
     def generate_zip(self, data_array):
         # Generar JSON y XML
@@ -130,87 +126,40 @@ class PosSession(models.Model):
 
     # H - Metodo para descargar JSON
     def action_download_json(self):
-        # Asegura tomar un solo elemento
-        self.ensure_one()
+        # Datos de la sesion POS
+        session_data = [
+            {
+                'id': self.id,
+                'name': self.name,
+                'start_at': self.start_at,
+                'stop_at': self.stop_at,
+                'user_id': self.user_id.name,
+                'config_id': self.config_id.name,
+                'state': self.state,
+            }
+        ]
 
+        # Datos a json
+        json_data = json.dumps(session_data, default=str, indent=4)
+
+        # Nombre del archivo
+        file_name = f"ventas_session_{self.name}.json"
+
+        # Archivo adjunto
+        attachment = self.env['ir.attachment'].create({
+            'name': file_name,
+            'type': 'binary',
+            'datas': base64.b64encode(json_data.encode('utf-8')),
+            'mimetype': 'application/json',
+        })
+
+        # Devuelve una acción de descarga
         return {
             'type': 'ir.actions.act_url',
-            'url': f'/pos_session/download_zip/{self.id}',
-            'target': 'new'
+            'url': f'/web/content/{attachment.id}?download=true',
+            'target': 'self'
         }
     
     def action_message(self):
-        # return self.action_download_json()
-        return self.action_download_zip()
-
-    # Metodo para generar un archivo ZIP
-    def generate_zip2(self):
-        # Identificador de la sesion
-        session = request.env['pos.session'].sudo().browse(self.id)
-        if not session.exists():
-            return request.not_found()
-
-        session_data = [{"FProceso": "2024-02-26"}]
-
-        documentos =[
-            {
-                'nombreArchivo':'CabeceraDocumentosEmitidos',
-                'datos': session_data,
-            },
-            {
-                'nombreArchivo':'CierreCaja',
-                'datos': session_data,
-            },
-            {
-                'nombreArchivo':'DetalleDocumentosFacturacion',
-                'datos': session_data,
-            },
-            {
-                'nombreArchivo':'DetalleDocumentosInventario',
-                'datos': session_data,
-            },
-            {
-                'nombreArchivo':'DetalleDocumentosCobranza',
-                'datos': session_data,
-            },
-        ]
+        self.action_download_json()
         
-        # Buffer para el zip
-        zip_buffer = io.BytesIO()
-        
-        with zipfile.ZipFile(zip_buffer, 'w', zipfile.ZIP_DEFLATED) as zip_file:
-            for doc in documentos:
-                xml_name, xml_content = self.generate_xml(doc['nombreArchivo'],doc['datos'])
-                zip_file.writestr(xml_name, xml_content)
-
-        # Traer contenido del ZIP
-        zip_buffer.seek(0)
-        zip_content = zip_buffer.read()
-
-        # Nombre del archivo
-        zip_name = f"session_{self.name}.zip"
-
-        return self.create_attachment(zip_name, zip_content, "application/zip")
-
-    # Metodo general de descarga directa de archivos
-    def action_download_zip(self):
-        # Asegura tomar un solo elemento
-        self.ensure_one()
-        
-        # Devuelve la acción de descarga
-        return {
-            'type': 'ir.actions.act_url',
-            'url': f'/pos_session/download_zip/{self.id}',
-            'target': 'new'
-        }
-
-    def action_export_zip(self):
-        """Abre un popup para configurar y ejecutar la exportación de datos de la sesión en formato ZIP."""
-        return {
-            'type': 'ir.actions.act_window',
-            'name': 'Exportar en .zip',  # Título del popup
-            'res_model': 'export.pos.sales', # El modelo del wizard.  Debe existir.
-            'view_mode': 'form',
-            'target': 'new',
-            'context': {'default_message': 'Este es un mensaje de prueba para la exportación en .zip.'}, # Mensaje de prueba
-        }

@@ -196,7 +196,7 @@ class PosSession(models.Model):
     def action_download_zip(self):
         # Asegura tomar un solo elemento
         self.ensure_one()
-        
+
         # Devuelve la acción de descarga
         return {
             'type': 'ir.actions.act_url',
@@ -205,11 +205,10 @@ class PosSession(models.Model):
         }
 
     def action_export_zip(self):
-        """Abre un popup para configurar y ejecutar la exportación de datos de la sesión en formato ZIP."""
         return {
             'type': 'ir.actions.act_window',
             'name': 'Exportar en .zip',  # Título del popup
-            'res_model': 'export.pos.sales', # El modelo del wizard.  Debe existir.
+            'res_model': 'export.pos.sales', # El modelo del wizard.  Debe existir.  Lo creamos a continuación.
             'view_mode': 'form',
             'target': 'new',
             'context': {'default_message': 'Este es un mensaje de prueba para la exportación en .zip.'}, # Mensaje de prueba

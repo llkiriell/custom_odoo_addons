@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="field_management.dashboard">
+        <div class="o_field_management_dashboard">
+            <div class="o_dashboard_common">
+                <div class="row">
+                    <div class="col-12 col-lg-4">
+                        <div class="o_field_management_kanban">
+                            <div class="o_kanban_card_header">
+                                <div class="o_kanban_card_header_title">
+                                    <div class="o_primary">
+                                        <span>Resumen de Reservas</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container o_kanban_card_content">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <a href="#" class="o_dashboard_action" t-att-data-action-id="action_reservations">
+                                            <span class="o_highlight">Ver Reservas</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates> 

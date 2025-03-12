@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Secuencia para Reservaciones -->
+        <record id="seq_field_management_reservation" model="ir.sequence">
+            <field name="name">Secuencia de Reservaciones</field>
+            <field name="code">field_management.reservation</field>
+            <field name="prefix">RES/%(year)s/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <!-- Secuencia para Alquileres -->
+        <record id="seq_field_management_rental" model="ir.sequence">
+            <field name="name">Secuencia de Alquileres</field>
+            <field name="code">field_management.rental</field>
+            <field name="prefix">ALQ/%(year)s/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <!-- Secuencia para Partidos -->
+        <record id="seq_field_management_match" model="ir.sequence">
+            <field name="name">Secuencia de Partidos</field>
+            <field name="code">field_management.match</field>
+            <field name="prefix">MATCH/%(year)s/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+</odoo> 
